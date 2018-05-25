@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>患者畫面</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css">
+    h1 {
+        /*font-size:50px;*/
+    }
+
+    #patients-list div {
+        font-size: 50px;
+        margin: 0.5em 0;
+        /*width:13%;*/
+    }
+
+    .input-field label {
+        font-size: 50px;
+    }
+
+    #pat-form,
+    #pat-form span {
+        font-size: 50px;
+    }
+
+    #pat-form p {
+        margin: 0;
+    }
+    </style>
+</head>
+
+<body>
+    <section id="user-list">
+        <div class="row orange center white-text">
+            <h1>醫/護填寫畫面</h1>
+        </div>
+        <div id="patients-list" class="container center">
+            <form class="row">
+                <div class="input-field col m6 push-m2">
+                    <input placeholder="" id="search-patients-list" type="text" class="validate" style="font-size: 50px;margin-top:1em;">
+                    <!-- to-do: only numer input!!! -->
+                    <label for="search-patients-list">直接搜尋</label>
+                </div>
+                <div class="col m2 push-m2"> <i class="material-icons" style="font-size: 50px">send</i></div>
+            </form>
+            <div class="row">
+                <div class="btn btn-large col m2 pat-page-btn">1</div>
+                <div class="btn btn-large col m2 pat-page-btn">2</div>
+                <div class="btn btn-large col m2 pat-page-btn">3</div>
+                <div class="btn btn-large col m2 pat-page-btn">4</div>
+                <div class="btn btn-large col m2 pat-page-btn">5</div>
+                <div class="btn btn-large col m2 pat-page-btn">6</div>
+                <div class="btn btn-large col m2 pat-page-btn">7</div>
+                <div class="btn btn-large col m2 pat-page-btn">8</div>
+                <div class="btn btn-large col m2 pat-page-btn">9</div>
+                <div class="btn btn-large col m2 pat-page-btn">10</div>
+                <div class="btn btn-large col m2 pat-page-btn">11</div>
+                <div class="btn btn-large col m2 pat-page-btn">12</div>
+            </div>
+        </div>
+    </section>
+    <section id="pat-page" style="display:none;">
+        <div class="row">
+            <div id="pat-page-back" class="pat-back btn transparent black-text left"><i class="material-icons" style="font-size: 50px;color:black">arrow_back</i></div>
+        </div>
+        <div class="row blue center white-text">
+            <h1 id="pat-number" class="center">病人畫面</h1>
+        </div>
+        <div class="container">
+            <form id="pat-form" class="row">
+                <div class="input-field col m6">
+                    <input placeholder="" id="pat-name" type="text" class="validate" style="font-size: 50px;margin-top:1em;">
+                    <label for="pat-name">姓名</label>
+                </div>
+                <div class="input-field col m6">
+                    <input placeholder="" id="pat-age" type="text" class="validate" style="font-size: 50px;margin-top:1em;">
+                    <!-- to-do: only numer input!!! -->
+                    <label for="pat-age">年齡</label>
+                </div>
+                <div class="col m12">
+                    <p style="margin: 0;">請問是哪裡不舒服呢？</p>
+                    <p>
+                        <label>
+                            <input name="group1" type="radio" checked />
+                            <span>頭</span>
+                        </label>
+                        <label>
+                            <input name="group1" type="radio" />
+                            <span>手</span>
+                        </label>
+                    </p>
+                </div>
+                <div class="center">
+                    <!-- to-do: 每個都是必填！ -->
+                    <div id="pat-form-send" class="btn btn-large">送出</div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section id="pat-details" style="display: none;">
+        <div class="row">
+            <div id="pat-deatils-back" class="pat-back btn transparent black-text left"><i class="material-icons" style="font-size: 50px;color:black">arrow_back</i></div>
+        </div>
+        <div class="row red center white-text">
+            <h1>病人的細節</h1>
+            <div class="center">
+                <div id="doctor-send" class="btn btn-large">朕知道了</div>
+            </div>
+        </div>
+    </section>
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('select').formSelect();
+        $('.pat-page-btn').click(function() {
+            $('#user-list').hide();
+            $('#pat-number').text($(this).text());
+            if ($(this).hasClass('orange')) {
+                $('#pat-details').fadeIn();
+            } else {
+                $('#pat-page').fadeIn();
+            }
+        });
+        $('.pat-back').click(function() {
+            $('#user-list').fadeIn();
+            $('#pat-page').hide();
+            $('#pat-details').hide();
+        });
+        $('#doctor-send').click(function() {
+        	$('#pat-page-back').click();
+            var patNumberFinishFilling = Number($('#pat-number').text()) - 1;
+        	$('.pat-page-btn')[patNumberFinishFilling].classList.remove('orange');
+            $('.pat-page-btn')[patNumberFinishFilling].classList.add('red');
+        });
+        $('#pat-form-send').click(function() {
+        	$('#pat-page-back').click();
+            var patNumberFinishFilling = Number($('#pat-number').text()) - 1;
+            $('.pat-page-btn')[patNumberFinishFilling].classList.add('orange');
+        });
+        $('.orange').on('click', function() {
+            $('#user-list').hide();
+            $('#pat-details').fadeIn();
+        })
+    });
+    </script>
+</body>
+
+</html>
