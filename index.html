@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>患者畫面</title>
+    <title>安可啡-你阿嬤都懂的健康頻道</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
@@ -136,13 +136,13 @@
             $('#pat-details').hide();
         });
         $('#doctor-send').click(function() {
-        	$('#pat-page-back').click();
+            $('#pat-page-back').click();
             var patNumberFinishFilling = Number($('#pat-number').text()) - 1;
-        	$('.pat-page-btn')[patNumberFinishFilling].classList.remove('orange');
+            $('.pat-page-btn')[patNumberFinishFilling].classList.remove('orange');
             $('.pat-page-btn')[patNumberFinishFilling].classList.add('red');
         });
         $('#pat-form-send').click(function() {
-        	$('#pat-page-back').click();
+            $('#pat-page-back').click();
             var patNumberFinishFilling = Number($('#pat-number').text()) - 1;
             $('.pat-page-btn')[patNumberFinishFilling].classList.add('orange');
         });
