@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>安可啡-你阿嬤都懂的健康頻道</title>
+    <link rel="icon" href="logo-web.png">
     <meta name="description" content="我們希望用最簡單、淺白的方式，告訴您如何「更健康」">
     <meta name="keywords" content="health,安可啡,健康,頻道,video,simple">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -13,108 +14,262 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style type="text/css">
+    body {
+        height: 100vh;
+        background: #fbd249;
+        background: linear-gradient(235deg, #fbd249, #ffac02);
+    }
+
     h1 {
         /*font-size:50px;*/
     }
 
-    #patients-list div {
-        font-size: 50px;
-        margin: 0.5em 0;
-        /*width:13%;*/
+    .pat-page-btn {
+        border: solid 1px #979797;
+        background-color: #a1ce5b;
+        border-radius: 15px;
+        text-align: center;
+        margin: 12px auto;
+        line-height: 1.5;
+        font-size: 48px;
+        height: 80px;
+        width: 80px;
+    }
+
+
+
+    .space {
+        margin: 12px auto;
+        height: 80px;
+        width: 80px;
+    }
+
+    #pat-number,
+    #pat-number-dr {
+        font-size: 100px;
+        border-radius: 40px;
+        padding: 20px 55px;
     }
 
     .input-field label {
-        font-size: 50px;
+        font-size: 24px;
+        color: white;
     }
 
     #pat-form,
     #pat-form span {
-        font-size: 50px;
+        font-size: 24px;
     }
 
     #pat-form p {
         margin: 0;
     }
+
+    input[name="uncomfort"] {
+        color: white;
+    }
+
+    nav {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        height: 5em;
+    }
+
+    .question {
+        margin: 1em 0;
+    }
+
+    #search-patients-list {
+        border: solid 3px #979797;
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 0 45px;
+        font-size: 36px;
+        color: #959595;
+        width: 250px;
+        height: 63px;
+    }
+
+    #details-des {
+        width: 90%;
+        height: 299px;
+        padding: 0 1em;
+        text-align: left;
+        border-radius: 30px;
+        box-shadow: inset 5px 5px 5px 2px rgba(0, 0, 0, 0.5);
+        background-color: #fffdfd;
+        border: solid 1px #979797;
+        font-size: 48px;
+        font-weight: 600;
+    }
+
+    #details-pos {
+        box-shadow: inset 5px 5px 5px 2px rgba(0, 0, 0, 0.5);
+        border: solid 1px #979797;
+        background-color: #fffdfd;
+        border-radius: 30px;
+        width: 90%;
+        height: 81px;
+        text-align: left;
+        font-size: 48px;
+        font-weight: 600;
+    }
     </style>
 </head>
 
 <body>
-    <section id="user-list">
-        <div class="row orange center white-text">
-            <h1>醫/護填寫畫面</h1>
+    <nav class="transparent row" style="">
+        <div class="col m1"></div>
+        <div class="white-text left col m6">
+            <h3>和麗診所<br>電子化診前病症問卷</h3></div>
+        <div class="col m4 left" style="margin-top:3em">
+            <img src="logo.png">
         </div>
-        <div id="patients-list" class="container center">
-            <form class="row">
-                <div class="input-field col m6 push-m2">
-                    <input placeholder="" id="search-patients-list" type="text" class="validate" style="font-size: 50px;margin-top:1em;">
-                    <!-- to-do: only numer input!!! -->
-                    <label for="search-patients-list">直接搜尋</label>
-                </div>
-                <div class="col m2 push-m2"> <i class="material-icons" style="font-size: 50px">send</i></div>
-            </form>
+        <div class="col m2">
+            <div style="display: none">space</div>
+        </div>
+    </nav>
+    <section id="user-list">
+        <div id="patients-list" class="center">
             <div class="row">
-                <div class="btn btn-large col m2 pat-page-btn">1</div>
-                <div class="btn btn-large col m2 pat-page-btn">2</div>
-                <div class="btn btn-large col m2 pat-page-btn">3</div>
-                <div class="btn btn-large col m2 pat-page-btn">4</div>
-                <div class="btn btn-large col m2 pat-page-btn">5</div>
-                <div class="btn btn-large col m2 pat-page-btn">6</div>
-                <div class="btn btn-large col m2 pat-page-btn">7</div>
-                <div class="btn btn-large col m2 pat-page-btn">8</div>
-                <div class="btn btn-large col m2 pat-page-btn">9</div>
-                <div class="btn btn-large col m2 pat-page-btn">10</div>
-                <div class="btn btn-large col m2 pat-page-btn">11</div>
-                <div class="btn btn-large col m2 pat-page-btn">12</div>
+                <!-- to-do: only numer input!!! -->
+                <div id="search-patients-list" class="col m4 right pull-m1">
+                    <nobr>
+                        <input placeholder="輸入號碼進入" type="number" class="validate" name="search-pat-num" style="font-size: 24px;">
+                        <i id="search" class="material-icons" style="font-size: 24px">search</i></nobr>
+                </div>
+                <!-- <span id="search-patients-list">輸入號碼進入|</span> -->
+            </div>
+            <!-- <div class="col m2 push-m2"> <i class="material-icons" style="font-size: 50px">send</i></div> -->
+            <div id="patients-btn-list" class="row" style="height:70vh;overflow-y: scroll;">
             </div>
         </div>
     </section>
-    <section id="pat-page" style="display:none;">
-        <div class="row">
-            <div id="pat-page-back" class="pat-back btn btn-flat transparent white-text left"><i class="material-icons" style="font-size: 50px;color:black;top:2em;position: absolute;">arrow_back</i></div>
+    <section id="pat-page" style="display:none;margin-top:5em">
+        <div class="row center white-text center" style="margin-bottom: 0">
+            <div id="pat-page-back" class="col m2 pat-back btn btn-flat transparent white-text left"><i class="material-icons" style="margin-left:2em;font-size: 50px;color:black;">arrow_back</i></div>
+            <h1 id="pat-number" class="col m2 push-m3 blue">病人畫面</h1>
         </div>
-        <div class="row blue center white-text">
-            <h1 id="pat-number" class="center">病人畫面</h1>
+        <div class="row center white-text center">
+            <h1 style="margin:0">您的號碼</h1>
         </div>
         <div class="container">
-            <form id="pat-form" class="row">
-                <div class="input-field col m6">
-                    <input placeholder="" id="pat-name" type="text" class="validate" style="font-size: 50px;margin-top:1em;">
-                    <label for="pat-name">姓名</label>
+            <form id="pat-form" class="row white-text" style="height:50vh;overflow-y: scroll">
+                <div class="input-field col m6 question">
+                    <span>1. 請輸入姓名：</span>
+                    <input placeholder="" id="pat-name" type="text" class="validate" style="font-size: 36px;">
                 </div>
-                <div class="input-field col m6">
-                    <input placeholder="" id="pat-age" type="text" class="validate" style="font-size: 50px;margin-top:1em;">
-                    <!-- to-do: only numer input!!! -->
-                    <label for="pat-age">年齡</label>
-                </div>
-                <div class="col m12">
-                    <p style="margin: 0;">請問是哪裡不舒服呢？</p>
+                <div class="col m12 question">
+                    <p style="margin: 0;">2. 請問您今天哪裡不舒服呢？</p>
                     <p>
                         <label>
-                            <input name="group1" type="radio" checked />
-                            <span>頭</span>
+                            <input name="uncomfort" value="throat" type="checkbox" />
+                            <span>喉嚨痛 </span>
                         </label>
                         <label>
-                            <input name="group1" type="radio" />
-                            <span>手</span>
+                            <input name="uncomfort" value="fever" type="checkbox" />
+                            <span>發燒 </span>
+                        </label>
+                        <label>
+                            <input name="uncomfort" value="stomach" type="checkbox" />
+                            <span>肚子痛 </span>
+                        </label>
+                        <label>
+                            <input name="uncomfort" value="limbs" type="checkbox" />
+                            <span>關節痛 </span>
+                        </label>
+                        <label>
+                            <input name="uncomfort" value="eyes" type="checkbox" />
+                            <span>眼睛痛 </span>
                         </label>
                     </p>
                 </div>
-                <div class="center">
+                <div class="col m12 question">
+                    <p style="margin: 0;">3. 請問這樣持續多久了</p>
+                    <p>
+                        <label>
+                            <input name="lasting" type="radio" value="<2" />
+                            <span>兩天以內</span>
+                        </label>
+                        <label>
+                            <input name="lasting" value=">2" type="radio" />
+                            <span>兩天以上</span>
+                        </label>
+                        <label>
+                            <input name="lasting" value=">3" type="radio" />
+                            <span>三天以上</span>
+                        </label>
+                        <label>
+                            <input name="lasting" value=">7" type="radio" />
+                            <span>七天以上</span>
+                        </label>
+                        <label>
+                            <input name="lasting" value=">30" type="radio" />
+                            <span>一個月以上</span>
+                        </label>
+                    </p>
+                </div>
+                <div class="col m12 question">
+                    <p style="margin: 0;">4. 是怎麼發生的呢？</p>
+                    <p>
+                        <label>
+                            <input name="happen" type="radio" />
+                            <span>屬於突然發生</span>
+                        </label>
+                        <label>
+                            <input name="happen" type="radio" />
+                            <span>屬於慢慢發生</span>
+                        </label>
+                        <label>
+                            <input name="happen" type="radio" />
+                            <span>發生速度偶忘記惹</span>
+                        </label>
+                    </p>
+                </div>
+                <div class="input-field col m12 question">
+                    <span>5. 症狀發生時、尼正在做什麼呢？</span>
+                    <input placeholder="" id="pat-doing" type="text" class="validate" style="font-size: 36px;">
+                </div>
+                <div class="input-field col m12 question">
+                    <span>6. 有什麼狀況會讓你覺得比較舒服？</span>
+                    <input placeholder="" id="pat-feel-great" type="text" class="validate" style="font-size: 36px;">
+                </div>
+                <div class="input-field col m12 question">
+                    <span>7. 有什麼狀況會讓你覺得比較難過呢？</span>
+                    <input placeholder="" id="pat-feel-bad" type="text" class="validate" style="font-size: 36px;">
+                </div>
+                <div class="input-field col m12 question">
+                    <span>8. 除此之外還有哪些不舒服呢？</span>
+                    <input placeholder="" id="other" type="text" class="validate" style="font-size: 36px;">
+                </div>
+                <div class="center col m12 question">
                     <!-- to-do: 每個都是必填！ -->
-                    <div id="pat-form-send" class="btn btn-large">送出</div>
+                    <input type="reset" id="pat-form-send" class="btn btn-large" value="送出" placeholder="送出">
+                    <!-- <div id="pat-form-send" class="btn btn-large">送出</div> -->
                 </div>
             </form>
         </div>
     </section>
-    <section id="pat-details" style="display: none;">
-        <div class="row">
-            <div id="pat-deatils-back" class="pat-back btn btn-flat transparent black-text left"><i class="material-icons" style="font-size: 50px;color:black;top:2em;position: absolute;">arrow_back</i></div>
+    <section id="pat-details" style="display: none;margin-top:5em">
+        <div class="row center white-text center" style="margin-bottom: 0">
+            <div id="pat-deatils-back" class="col m2 pat-back btn btn-flat transparent black-text left"><i class="material-icons" style="font-size: 50px;color:black;margin-left:2em;">arrow_back</i></div>
+            <h1 id="pat-number-dr" class="col m2 push-m3 blue"></h1>
         </div>
-        <div class="row red center white-text">
-            <h1>病人的細節</h1>
-            <div class="center">
-                <div id="doctor-send" class="btn btn-large">朕知道了</div>
-            </div>
+        <div class="row center white-text">
+            <h1 style="margin:0">病人號碼</h1>
+        </div>
+        <div class="row center black-text white" id="details-des">
+            <p>病人名稱：<span id="pat-name-dr"></span>
+                <br>症狀：<span id="pat-uncomfort-dr"> </span>持續 <span id="pat-lasting-dr"></span>
+                <br>症狀<span id="pat-happen-dr"></span>，發生時我通常在<span id="pat-doing-dr"></span></p>
+        </div>
+        <div class="row center black-text white" id="details-pos">
+            <p style="margin:0;-webkit-margin:0;padding:0 1em">可能病症為 1. 一般感冒 90% 2.流行性感冒 40%
+            </p>
+        </div>
+        <div class="center">
+            <div id="doctor-send" class="btn btn-large">朕知道了</div>
+        </div>
         </div>
     </section>
     <!--JavaScript at end of body for optimized loading-->
@@ -122,12 +277,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
+        var outcome = { "P1": {} };
+        var patNunber = 80;
+        for (var j = 0; j < patNunber / 10; j++) {
+            $('#patients-btn-list').append('<div class="col m1"><div class="btn btn-flat transparent space"></div></div>');
+            for (var i = 1; i <= 10; i++) {
+                var patIndex = j * 10 + i;
+                $('#patients-btn-list').append('<div class="col m1"><div class="btn pat-page-btn-count pat-page-btn">' + patIndex + '</div></div>');
+            };
+            $('#patients-btn-list').append('<div class="col m1"><div class="btn btn-flat transparent space"></div></div>');
+        };
         $('select').formSelect();
         $('.pat-page-btn').click(function() {
             $('#user-list').hide();
             $('#pat-number').text($(this).text());
-            if ($(this).hasClass('orange')) {
+            $('#pat-name-dr').text('');
+            $('#pat-uncomfort-dr').text('');
+            $('#pat-lasting-dr').text('');
+            $('#pat-happen-dr').text('');
+            $('#pat-doing-dr').text('');
+            if ($(this).hasClass('blue') || $(this).hasClass('red')) {
                 $('#pat-details').fadeIn();
+                const thisPat =$(this).text();
+                $('#pat-number-dr').text(thisPat);
+                $('#pat-name-dr').text(localStorage.getItem(thisPat+"name"));
+                $('#pat-uncomfort-dr').text(localStorage.getItem(thisPat+"uncomfort"));
+                $('#pat-lasting-dr').text(localStorage.getItem(thisPat+"lasting"));
+                $('#pat-happen-dr').text(localStorage.getItem(thisPat+"happen"));
+                $('#pat-doing-dr').text(localStorage.getItem(thisPat+"doing"));
             } else {
                 $('#pat-page').fadeIn();
             }
@@ -140,18 +317,27 @@
         $('#doctor-send').click(function() {
             $('#pat-page-back').click();
             var patNumberFinishFilling = Number($('#pat-number').text()) - 1;
-            $('.pat-page-btn')[patNumberFinishFilling].classList.remove('orange');
-            $('.pat-page-btn')[patNumberFinishFilling].classList.add('red');
+            $('.pat-page-btn-count')[patNumberFinishFilling].classList.remove('blue');
+            $('.pat-page-btn-count')[patNumberFinishFilling].classList.add('red');
         });
         $('#pat-form-send').click(function() {
             $('#pat-page-back').click();
             var patNumberFinishFilling = Number($('#pat-number').text()) - 1;
-            $('.pat-page-btn')[patNumberFinishFilling].classList.add('orange');
+            $('.pat-page-btn-count')[patNumberFinishFilling].classList.add('blue');
+            localStorage.setItem((patNumberFinishFilling + 1) + "uncomfort", $("input[name='uncomfort']:checked").next().text());
+            localStorage.setItem((patNumberFinishFilling + 1) + "lasting", $('input[name="lasting"]:checked').next().text());
+            localStorage.setItem((patNumberFinishFilling + 1) + "name", $('#pat-name').val());
+            localStorage.setItem((patNumberFinishFilling + 1) + "happen", $('input[name="happen"]:checked').next().text());
+            localStorage.setItem((patNumberFinishFilling + 1) + "doing", $('#pat-doing').val());
         });
-        $('.orange').on('click', function() {
-            $('#user-list').hide();
-            $('#pat-details').fadeIn();
-        })
+        $('#search').click(function() {
+            var SearPatNum = Number($('input[name="search-pat-num"]').val());
+            if (!$('.pat-page-btn-count')[SearPatNum - 1]) { M.toast({ html: '這號病人的資料並沒有在上面喔！' }) }
+            $('.pat-page-btn-count')[SearPatNum - 1].click();
+        });
+        // $('.pat-page-btn-count')[0].click();
+        // $('#pat-form-send').click();
+        // $('.pat-page-btn-count')[0].click();
     });
     </script>
 </body>
