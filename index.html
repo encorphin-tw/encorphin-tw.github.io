@@ -117,7 +117,7 @@
     </style>
 </head>
 
-<body>
+<body scroll="no">
     <nav class="transparent row" style="">
         <div class="col m1"></div>
         <div class="white-text left col m6">
@@ -222,13 +222,27 @@
                         </label>
                         <label>
                             <input name="happen" type="radio" />
-                            <span>發生速度偶忘記惹</span>
+                            <span>發生速度偶忘記了</span>
                         </label>
                     </p>
                 </div>
                 <div class="input-field col m12 question">
-                    <span>5. 症狀發生時、尼正在做什麼呢？</span>
-                    <input placeholder="" id="pat-doing" type="text" class="validate" style="font-size: 36px;">
+                    <p style="margin: 0;">5. 症狀發生時、你正在做什麼呢？</p>
+                    <p>
+                        <label>
+                            <input name="pat-doing" value="exercise" type="radio" />
+                            <span>運動</span>
+                        </label>
+                        <label>
+                            <input name="pat-doing" value="showering" type="radio" />
+                            <span>洗澡</span>
+                        </label>
+                        <label>
+                            <input name="pat-doing" value="other" type="radio" />
+                            <span>其他
+                        </label>
+                        <input placeholder="" id="pat-doing" type="text" name="other-pat-doing" class="validate" style="font-size: 36px;"></span>
+                    </p>
                 </div>
                 <div class="input-field col m12 question">
                     <span>6. 有什麼狀況會讓你覺得比較舒服？</span>
@@ -244,7 +258,7 @@
                 </div>
                 <div class="center col m12 question">
                     <!-- to-do: 每個都是必填！ -->
-                    <input type="reset" id="pat-form-send" class="btn btn-large" value="送出" placeholder="送出">
+                    <input type="reset" id="pat-form-send" class="btn btn-large blue" value="送出" placeholder="送出">
                     <!-- <div id="pat-form-send" class="btn btn-large">送出</div> -->
                 </div>
             </form>
@@ -259,23 +273,26 @@
             <h1 style="margin:0">病人號碼</h1>
         </div>
         <div class="row center black-text white" id="details-des">
+            <button class="right btn blue" onclick="copyText()" style="margin-top: 1em">複製文字</button>
             <p>病人名稱：<span id="pat-name-dr"></span>
                 <br>症狀：<span id="pat-uncomfort-dr"> </span>持續 <span id="pat-lasting-dr"></span>
                 <br>症狀<span id="pat-happen-dr"></span>，發生時我通常在<span id="pat-doing-dr"></span></p>
         </div>
         <div class="row center black-text white" id="details-pos">
-            <p style="margin:0;-webkit-margin:0;padding:0 1em">可能病症為 1. 一般感冒 90% 2.流行性感冒 40%
-            </p>
+            <p style="margin:0;-webkit-margin:0;padding:0 1em">可能病症為 1. 一般感冒 90% 2.流行性感冒 40%</p>
         </div>
         <div class="center">
-            <div id="doctor-send" class="btn btn-large">朕知道了</div>
+            <div id="doctor-send" class="btn btn-large blue">朕知道了</div>
         </div>
         </div>
     </section>
     <!--JavaScript at end of body for optimized loading-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
     <script type="text/javascript">
+    // Initialize Firebase
+
     $(document).ready(function() {
         var outcome = { "P1": {} };
         var patNunber = 80;
@@ -298,13 +315,13 @@
             $('#pat-doing-dr').text('');
             if ($(this).hasClass('blue') || $(this).hasClass('red')) {
                 $('#pat-details').fadeIn();
-                const thisPat =$(this).text();
+                const thisPat = $(this).text();
                 $('#pat-number-dr').text(thisPat);
-                $('#pat-name-dr').text(localStorage.getItem(thisPat+"name"));
-                $('#pat-uncomfort-dr').text(localStorage.getItem(thisPat+"uncomfort"));
-                $('#pat-lasting-dr').text(localStorage.getItem(thisPat+"lasting"));
-                $('#pat-happen-dr').text(localStorage.getItem(thisPat+"happen"));
-                $('#pat-doing-dr').text(localStorage.getItem(thisPat+"doing"));
+                $('#pat-name-dr').text(localStorage.getItem(thisPat + "name"));
+                $('#pat-uncomfort-dr').text(localStorage.getItem(thisPat + "uncomfort"));
+                $('#pat-lasting-dr').text(localStorage.getItem(thisPat + "lasting"));
+                $('#pat-happen-dr').text(localStorage.getItem(thisPat + "happen"));
+                $('#pat-doing-dr').text(localStorage.getItem(thisPat + "doing"));
             } else {
                 $('#pat-page').fadeIn();
             }
@@ -338,7 +355,17 @@
         // $('.pat-page-btn-count')[0].click();
         // $('#pat-form-send').click();
         // $('.pat-page-btn-count')[0].click();
+
     });
+
+    function copyText() {
+        const el = document.createElement('textarea');
+        el.value = $('#details-des p').text();
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+    }
     </script>
 </body>
 
